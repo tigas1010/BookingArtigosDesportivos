@@ -12,7 +12,7 @@ class System:
     def _initialize_data(self):
         """Initialize sample data"""
         # Default admin
-        self. register_admin("Administrador", "admin@sistema.com", "admin123", 1)
+        self.register_admin("Administrador", "admin@sistema.com", "admin123", 1)
         
         # Sample client
         self.register_client("João Silva", "joao@email.com", "123456",
@@ -42,7 +42,7 @@ class System:
         self.create_item("Prancha de Natação", "Speedo", 2.00, cat_swimming)
         
         # Items - Fitness
-        self. create_item("Halteres 5kg (par)", "Domyos", 2.00, cat_fitness)
+        self.create_item("Halteres 5kg (par)", "Domyos", 2.00, cat_fitness)
         self.create_item("Tapete de Yoga", "Domyos", 1.50, cat_fitness)
         self.create_item("Corda de Saltar", "Domyos", 1.00, cat_fitness)
     
@@ -84,19 +84,31 @@ class System:
     # Category and Item Management
     def create_category(self, name, description=""):
         category = Category(name, description)
-        self._categories. append(category)
+        self._categories.append(category)
         return category
     
     def create_item(self, name, brand, price_per_hour, category=None):
         item = SportsItem(name, brand, price_per_hour, category)
-        self._items. append(item)
+        self._items.append(item)
         return item
     
     def remove_item(self, item):
         if item in self._items:
             self._items.remove(item)
             if item.category:
-                item. category.remove_item(item)
+                item.category.remove_item(item)
+            return True
+        return False
+    
+    def remove_category(self, category):
+        """Remove uma categoria do sistema.
+        Os artigos da categoria ficam sem categoria (None).
+        """
+        if category in self._categories:
+            # Remover a categoria dos artigos associados
+            for item in category.items[:]:  # Cópia da lista para evitar problemas
+                item._category = None
+            self._categories.remove(category)
             return True
         return False
     

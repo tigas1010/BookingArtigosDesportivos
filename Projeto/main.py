@@ -33,13 +33,13 @@ class App(tk.Tk):
     
     def show_login(self):
         self.clear_container()
-        login_view = LoginView(self. container, self.system, self. on_login_success)
-        login_view. pack(fill="both", expand=True)
+        login_view = LoginView(self.container, self.system, self.on_login_success)
+        login_view.pack(fill="both", expand=True)
     
     def on_login_success(self, user):
         self.clear_container()
         
-        if user. get_type() == "client":
+        if user.get_type() == "client":
             view = ClientView(self.container, self.system, self.logout)
         else:
             view = AdminView(self.container, self.system, self.logout)

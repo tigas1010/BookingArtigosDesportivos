@@ -8,8 +8,8 @@ class ClientView(ttk.Frame):
         super().__init__(parent)
         self.system = system
         self.on_logout = on_logout
-        self. client = system.current_user
-        self. selected_items = []
+        self.client = system.current_user
+        self.selected_items = []
         self.create_widgets()
     
     def create_widgets(self):
@@ -31,7 +31,7 @@ class ClientView(ttk.Frame):
         self.create_history_tab()
     
     def create_items_tab(self):
-        frame = ttk.Frame(self. notebook, padding=10)
+        frame = ttk.Frame(self.notebook, padding=10)
         self.notebook.add(frame, text="📦 Artigos Disponíveis")
         
         # Category filter
@@ -51,17 +51,17 @@ class ClientView(ttk.Frame):
         self.items_tree = ttk.Treeview(frame, columns=columns, show="headings", height=15)
         
         for col in columns:
-            self. items_tree.heading(col, text=col)
+            self.items_tree.heading(col, text=col)
             self.items_tree.column(col, width=120)
         
         self.items_tree.column("ID", width=50)
         self.items_tree.pack(fill="both", expand=True)
         
         # Scrollbar
-        scrollbar = ttk. Scrollbar(frame, orient="vertical", command=self.items_tree.yview)
-        self.items_tree.configure(yscrollcommand=scrollbar. set)
+        scrollbar = ttk.Scrollbar(frame, orient="vertical", command=self.items_tree.yview)
+        self.items_tree.configure(yscrollcommand=scrollbar.set)
         
-        self. update_categories()
+        self.update_categories()
         self.update_items()
     
     def create_new_reservation_tab(self):
@@ -82,11 +82,11 @@ class ClientView(ttk.Frame):
         self.reservation_cat_combo.bind("<<ComboboxSelected>>", self.filter_reservation_items)
         
         # Available items list
-        self.available_items_list = tk. Listbox(left_frame, height=10, selectmode="multiple")
+        self.available_items_list = tk.Listbox(left_frame, height=10, selectmode="multiple")
         self.available_items_list.pack(fill="both", expand=True)
         
         ttk.Button(left_frame, text="Adicionar à Reserva ➡",
-                  command=self. add_item_to_reservation).pack(pady=10)
+                  command=self.add_item_to_reservation).pack(pady=10)
         
         # Right frame - Current reservation
         right_frame = ttk.LabelFrame(frame, text="Reserva Atual", padding=10)
@@ -100,7 +100,7 @@ class ClientView(ttk.Frame):
         self.start_date = DateEntry(dates_frame, width=12, date_pattern="yyyy-mm-dd")
         self.start_date.grid(row=0, column=1, padx=5, pady=2)
         
-        self.start_hour = ttk. Combobox(dates_frame, values=[f"{h:02d}:00" for h in range(8, 22)], width=6)
+        self.start_hour = ttk.Combobox(dates_frame, values=[f"{h:02d}:00" for h in range(8, 22)], width=6)
         self.start_hour.set("10:00")
         self.start_hour.grid(row=0, column=2, pady=2)
         
@@ -121,7 +121,7 @@ class ClientView(ttk.Frame):
                   command=self.remove_item_from_reservation).pack(pady=5)
         
         # Total and confirm
-        self.total_label = ttk. Label(right_frame, text="Total:  €0.00",
+        self.total_label = ttk.Label(right_frame, text="Total:  €0.00",
                                     font=("Helvetica", 12, "bold"))
         self.total_label.pack(pady=10)
         
@@ -150,8 +150,8 @@ class ClientView(ttk.Frame):
         for col in columns:
             self.history_tree.heading(col, text=col)
         
-        self.history_tree. column("ID", width=50)
-        self.history_tree. column("Data Início", width=130)
+        self.history_tree.column("ID", width=50)
+        self.history_tree.column("Data Início", width=130)
         self.history_tree.column("Data Fim", width=130)
         self.history_tree.column("Artigos", width=200)
         self.history_tree.column("Total", width=80)
@@ -167,7 +167,7 @@ class ClientView(ttk.Frame):
         self.category_combo.set("Todas")
     
     def update_reservation_combo(self):
-        categories = [c.name for c in self. system.list_categories()]
+        categories = [c.name for c in self.system.list_categories()]
         self.reservation_cat_combo["values"] = categories
         if categories:
             self.reservation_cat_combo.set(categories[0])
@@ -183,7 +183,7 @@ class ClientView(ttk.Frame):
             status = "✓ Disponível" if item.available else "✗ Indisponível"
             self.items_tree.insert("", "end", values=(
                 item.id, item.name, item.brand,
-                f"€{item. price_per_hour:.2f}", cat_name, status
+                f"€{item.price_per_hour:.2f}", cat_name, status
             ))
     
     def filter_items(self, event):
@@ -206,7 +206,7 @@ class ClientView(ttk.Frame):
                 for item in items:
                     if item not in self.selected_items:
                         self.available_items_list.insert(tk.END,
-                            f"{item.id}:  {item.name} - €{item.price_per_hour:. 2f}/h")
+                            f"{item.id}: {item.name} - €{item.price_per_hour:.2f}/h")
                 break
     
     def show_all_items(self):
@@ -243,7 +243,7 @@ class ClientView(ttk.Frame):
                 f"{self.start_date.get()} {self.start_hour.get()}",
                 "%Y-%m-%d %H:%M"
             )
-            end_datetime = datetime. strptime(
+            end_datetime = datetime.strptime(
                 f"{self.end_date.get()} {self.end_hour.get()}",
                 "%Y-%m-%d %H:%M"
             )
@@ -255,7 +255,7 @@ class ClientView(ttk.Frame):
             else:
                 self.total_label.config(text="Total: €0.00")
         except:
-            self.total_label. config(text="Total: €0.00")
+            self.total_label.config(text="Total: €0.00")
     
     def confirm_reservation(self):
         if not self.selected_items:
@@ -277,7 +277,7 @@ class ClientView(ttk.Frame):
                 return
             
             if start_datetime < datetime.now():
-                messagebox. showerror("Erro", "Data de início não pode ser no passado!")
+                messagebox.showerror("Erro", "Data de início não pode ser no passado!")
                 return
             
         except ValueError:
@@ -302,7 +302,7 @@ class ClientView(ttk.Frame):
         self.update_history()
     
     def update_history(self):
-        for item in self.history_tree. get_children():
+        for item in self.history_tree.get_children():
             self.history_tree.delete(item)
         
         reservations = self.client.get_history()

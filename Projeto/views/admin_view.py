@@ -6,7 +6,7 @@ class AdminView(ttk.Frame):
         super().__init__(parent)
         self.system = system
         self.on_logout = on_logout
-        self. admin = system.current_user
+        self.admin = system.current_user
         self.create_widgets()
     
     def create_widgets(self):
@@ -14,7 +14,7 @@ class AdminView(ttk.Frame):
         header = ttk.Frame(self)
         header.pack(fill="x", padx=10, pady=10)
         
-        ttk. Label(header, text=f"🔧 Painel de Administração - {self.admin.name}",
+        ttk.Label(header, text=f"🔧 Painel de Administração - {self.admin.name}",
                  font=("Helvetica", 14, "bold")).pack(side="left")
         ttk.Button(header, text="Logout", command=self.on_logout).pack(side="right")
         
@@ -67,18 +67,20 @@ class AdminView(ttk.Frame):
         
         ttk.Button(btn_frame, text="➕ Nova Categoria",
                   command=self.new_category).pack(side="left")
+        ttk.Button(btn_frame, text="🗑️ Apagar Categoria",
+                  command=self.remove_category).pack(side="left", padx=5)
         ttk.Button(btn_frame, text="🔄 Atualizar",
                   command=self.update_categories).pack(side="right")
         
         # Treeview
         columns = ("ID", "Nome", "Descrição", "Nº Artigos")
-        self.categories_tree = ttk. Treeview(frame, columns=columns, show="headings", height=18)
+        self.categories_tree = ttk.Treeview(frame, columns=columns, show="headings", height=18)
         
         for col in columns:
-            self. categories_tree.heading(col, text=col)
+            self.categories_tree.heading(col, text=col)
         
-        self.categories_tree. column("ID", width=50)
-        self.categories_tree. column("Nome", width=200)
+        self.categories_tree.column("ID", width=50)
+        self.categories_tree.column("Nome", width=200)
         self.categories_tree.column("Descrição", width=300)
         self.categories_tree.column("Nº Artigos", width=100)
         
@@ -87,12 +89,12 @@ class AdminView(ttk.Frame):
         self.update_categories()
     
     def create_reservations_tab(self):
-        frame = ttk. Frame(self.notebook, padding=10)
-        self.notebook. add(frame, text="📋 Gerir Reservas")
+        frame = ttk.Frame(self.notebook, padding=10)
+        self.notebook.add(frame, text="📋 Gerir Reservas")
         
         # Filters
         filter_frame = ttk.Frame(frame)
-        filter_frame. pack(fill="x", pady=(0, 10))
+        filter_frame.pack(fill="x", pady=(0, 10))
         
         ttk.Label(filter_frame, text="Filtrar por estado:").pack(side="left")
         self.state_combo = ttk.Combobox(filter_frame, state="readonly",
@@ -126,7 +128,7 @@ class AdminView(ttk.Frame):
         self.update_reservations()
     
     def update_items(self):
-        for item in self.items_tree. get_children():
+        for item in self.items_tree.get_children():
             self.items_tree.delete(item)
         
         for item in self.system.list_items():
@@ -134,7 +136,7 @@ class AdminView(ttk.Frame):
             status = "✓ Disponível" if item.available else "✗ Indisponível"
             self.items_tree.insert("", "end", values=(
                 item.id, item.name, item.brand,
-                f"€{item. price_per_hour:.2f}", cat_name, status
+                f"€{item.price_per_hour:.2f}", cat_name, status
             ))
     
     def update_categories(self):
@@ -147,10 +149,10 @@ class AdminView(ttk.Frame):
             ))
     
     def update_reservations(self):
-        for item in self.reservations_tree. get_children():
+        for item in self.reservations_tree.get_children():
             self.reservations_tree.delete(item)
         
-        state_filter = self.state_combo. get()
+        state_filter = self.state_combo.get()
         state = None if state_filter == "Todos" else state_filter
         
         for reservation in self.system.list_reservations(state=state):
@@ -158,10 +160,10 @@ class AdminView(ttk.Frame):
             self.reservations_tree.insert("", "end", values=(
                 reservation.id,
                 reservation.client.name,
-                reservation.start_date. strftime("%Y-%m-%d %H:%M"),
+                reservation.start_date.strftime("%Y-%m-%d %H:%M"),
                 reservation.end_date.strftime("%Y-%m-%d %H:%M"),
                 items_str,
-                f"€{reservation. total_value:.2f}",
+                f"€{reservation.total_value:.2f}",
                 reservation.state
             ))
     
@@ -208,7 +210,7 @@ class AdminView(ttk.Frame):
                 return
             
             if not name or not brand:
-                messagebox. showwarning("Aviso", "Preencha todos os campos!")
+                messagebox.showwarning("Aviso", "Preencha todos os campos!")
                 return
             
             category = None
@@ -257,7 +259,7 @@ class AdminView(ttk.Frame):
                 return
             
             self.system.create_category(name, desc)
-            messagebox. showinfo("Sucesso", "Categoria criada!")
+            messagebox.showinfo("Sucesso", "Categoria criada!")
             dialog.destroy()
             self.update_categories()
         
@@ -284,7 +286,7 @@ class AdminView(ttk.Frame):
     def remove_item(self):
         selection = self.items_tree.selection()
         if not selection:
-            messagebox. showwarning("Aviso", "Selecione um artigo!")
+            messagebox.showwarning("Aviso", "Selecione um artigo!")
             return
         
         if messagebox.askyesno("Confirmar", "Remover este artigo?"):
@@ -299,12 +301,12 @@ class AdminView(ttk.Frame):
                     break
     
     def cancel_reservation(self):
-        selection = self.reservations_tree. selection()
+        selection = self.reservations_tree.selection()
         if not selection: 
             messagebox.showwarning("Aviso", "Selecione uma reserva!")
             return
         
-        item_data = self.reservations_tree. item(selection[0])
+        item_data = self.reservations_tree.item(selection[0])
         reservation_id = item_data["values"][0]
         state = item_data["values"][6]
         
@@ -319,3 +321,27 @@ class AdminView(ttk.Frame):
                 messagebox.showinfo("Sucesso", "Reserva cancelada!")
                 self.update_reservations()
                 self.update_items()
+    
+    def remove_category(self):
+        selection = self.categories_tree.selection()
+        if not selection:
+            messagebox.showwarning("Aviso", "Selecione uma categoria!")
+            return
+        
+        item_data = self.categories_tree.item(selection[0])
+        category_id = item_data["values"][0]
+        num_items = item_data["values"][3]
+        
+        # Avisar se a categoria tem artigos
+        msg = f"Remover esta categoria?"
+        if num_items > 0:
+            msg = f"Esta categoria tem {num_items} artigo(s) associado(s).\nOs artigos ficarão sem categoria.\n\nRemover mesmo assim?"
+        
+        if messagebox.askyesno("Confirmar", msg):
+            for cat in self.system.list_categories():
+                if cat.id == category_id:
+                    self.system.remove_category(cat)
+                    messagebox.showinfo("Sucesso", "Categoria removida!")
+                    self.update_categories()
+                    self.update_items()  # Atualizar lista de artigos
+                    break

@@ -44,10 +44,10 @@ class Reservation:
         return self._state
     
     def add_item(self, item):
-        if item. check_availability():
+        if item.check_availability():
             self._items.append(item)
             item.set_available(False)
-            self. calculate_total()
+            self.calculate_total()
             return True
         return False
     
@@ -87,7 +87,7 @@ class Reservation:
     def __str__(self):
         items_str = ", ".join([i.name for i in self._items])
         return (f"Reservation #{self._id} | {self._state}\n"
-                f"Period: {self._start_date. strftime('%Y-%m-%d %H:%M')} - "
+                f"Period: {self._start_date.strftime('%Y-%m-%d %H:%M')} - "
                 f"{self._end_date.strftime('%Y-%m-%d %H:%M')}\n"
                 f"Items: {items_str}\n"
                 f"Total: €{self._total_value:.2f}")

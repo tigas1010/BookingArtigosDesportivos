@@ -20,11 +20,11 @@ class LoginView(ttk.Frame):
         
         # Form frame
         form_frame = ttk.LabelFrame(main_frame, text="Login", padding=20)
-        form_frame. pack(padx=20, pady=10)
+        form_frame.pack(padx=20, pady=10)
         
         # Email
         ttk.Label(form_frame, text="Email:").grid(row=0, column=0, sticky="w", pady=5)
-        self.email_entry = ttk. Entry(form_frame, width=30)
+        self.email_entry = ttk.Entry(form_frame, width=30)
         self.email_entry.grid(row=0, column=1, pady=5, padx=(10, 0))
         
         # Password
@@ -36,7 +36,7 @@ class LoginView(ttk.Frame):
         btn_frame = ttk.Frame(form_frame)
         btn_frame.grid(row=2, column=0, columnspan=2, pady=(20, 0))
         
-        ttk.Button(btn_frame, text="Entrar", command=self. do_login).pack(side="left", padx=5)
+        ttk.Button(btn_frame, text="Entrar", command=self.do_login).pack(side="left", padx=5)
         ttk.Button(btn_frame, text="Registar", command=self.open_register).pack(side="left", padx=5)
         
         # Test info
@@ -53,7 +53,7 @@ class LoginView(ttk.Frame):
         password = self.password_entry.get()
         
         if not email or not password:
-            messagebox. showwarning("Aviso", "Preencha todos os campos!")
+            messagebox.showwarning("Aviso", "Preencha todos os campos!")
             return
         
         user = self.system.login(email, password)
@@ -64,7 +64,7 @@ class LoginView(ttk.Frame):
     
     def open_register(self):
         # Register window
-        register_window = tk. Toplevel(self)
+        register_window = tk.Toplevel(self)
         register_window.title("Registar Cliente")
         register_window.geometry("400x350")
         register_window.resizable(False, False)
@@ -92,14 +92,14 @@ class LoginView(ttk.Frame):
             self.register_entries[label] = entry
         
         def confirm_register():
-            name = self.register_entries["Nome:"]. get().strip()
+            name = self.register_entries["Nome:"].get().strip()
             email = self.register_entries["Email:"].get().strip()
             password = self.register_entries["Password:"].get()
             address = self.register_entries["Morada:"].get().strip()
             phone = self.register_entries["Telefone:"].get().strip()
             
             if not all([name, email, password, address, phone]):
-                messagebox. showwarning("Aviso", "Preencha todos os campos!")
+                messagebox.showwarning("Aviso", "Preencha todos os campos!")
                 return
             
             client = self.system.register_client(name, email, password, address, phone)
@@ -107,7 +107,7 @@ class LoginView(ttk.Frame):
                 messagebox.showinfo("Sucesso", "Registo efetuado com sucesso!")
                 register_window.destroy()
             else:
-                messagebox. showerror("Erro", "Email já registado!")
+                messagebox.showerror("Erro", "Email já registado!")
         
         ttk.Button(frame, text="Confirmar Registo",
                   command=confirm_register).pack(pady=20)

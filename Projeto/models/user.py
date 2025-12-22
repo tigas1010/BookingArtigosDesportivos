@@ -3,7 +3,7 @@ from abc import ABC, abstractmethod
 class User(ABC):
     _id_counter = 0
     
-    def __init__(self, name:  str, email: str, password: str):
+    def __init__(self, name: str, email: str, password: str):
         User._id_counter += 1
         self._id = User._id_counter
         self._name = name
@@ -68,7 +68,7 @@ class Administrator(User):
     def access_level(self):
         return self._access_level
     
-    def manage_stock(self, item, available:  bool):
+    def manage_stock(self, item, available: bool):
         item.set_available(available)
     
     def cancel_reservation(self, reservation):
