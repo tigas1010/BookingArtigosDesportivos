@@ -1,0 +1,19 @@
+[
+    {
+        "id": 1,
+        "type": "admin",
+        "name": "Administrador",
+        "email": "admin@sistema.com",
+        "password": "admin123",
+        "access_level": 1
+    },
+    {
+        "id": 2,
+        "type": "client",
+        "name": "João Silva",
+        "email": "joao@email.com",
+        "password": "123456",
+        "address": "Rua das Flores, 123",
+        "phone": "912345678"
+    }
+]

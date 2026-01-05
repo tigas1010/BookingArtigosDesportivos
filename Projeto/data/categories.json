@@ -1,0 +1,22 @@
+[
+    {
+        "id": 1,
+        "name": "Futebol",
+        "description": "Equipamento de futebol"
+    },
+    {
+        "id": 2,
+        "name": "Desportos de Raquete",
+        "description": "Ténis, Badminton, Padel"
+    },
+    {
+        "id": 3,
+        "name": "Natação",
+        "description": "Equipamento de natação"
+    },
+    {
+        "id": 4,
+        "name": "Fitness",
+        "description": "Equipamento de ginásio"
+    }
+]
