@@ -74,70 +74,92 @@ class AdminView:
     
     def new_item(self):
         from models import SportsItem, Category
-        
+    
         dialog = tk.Toplevel(self.master)
         dialog.title("Novo Artigo")
-        dialog.geometry("400x300")
+        dialog.geometry("400x400")
         dialog.resizable(False, False)
         dialog.grab_set()
-        
-        frame = tk.Frame(dialog, padx=20, pady=20)
+        dialog.configure(bg="white")
+    
+        # Centralizar
+        dialog.update_idletasks()
+        x = (dialog.winfo_screenwidth() - 400) // 2
+        y = (dialog.winfo_screenheight() - 350) // 2
+        dialog.geometry(f"+{x}+{y}")
+    
+        frame = tk.Frame(dialog, bg="white", padx=30, pady=20)
         frame.pack(fill="both", expand=True)
-        
-        tk.Label(frame, text="Criar Novo Artigo", font=("Arial", 12, "bold")).pack(pady=10)
-        
+    
+        tk.Label(frame, text="Criar Novo Artigo", font=("Arial", 14, "bold"), bg="white").pack(pady=(0, 20))
+    
         # Nome
-        tk.Label(frame, text="Nome:").pack(anchor="w")
-        name_entry = tk.Entry(frame, width=35)
-        name_entry.pack(pady=2)
-        
+        tk.Label(frame, text="Nome", font=("Arial", 9), bg="white", anchor="w").pack(fill="x")
+        name_entry = tk.Entry(frame, font=("Arial", 10), relief="solid", bd=1)
+        name_entry.pack(fill="x", ipady=6, pady=(2, 10))
+    
         # Marca
-        tk.Label(frame, text="Marca:").pack(anchor="w")
-        brand_entry = tk.Entry(frame, width=35)
-        brand_entry.pack(pady=2)
-        
+        tk.Label(frame, text="Marca", font=("Arial", 9), bg="white", anchor="w").pack(fill="x")
+        brand_entry = tk.Entry(frame, font=("Arial", 10), relief="solid", bd=1)
+        brand_entry.pack(fill="x", ipady=6, pady=(2, 10))
+    
         # Preço
-        tk.Label(frame, text="Preço por Hora (€):").pack(anchor="w")
-        price_entry = tk.Entry(frame, width=35)
-        price_entry.pack(pady=2)
-        
+        tk.Label(frame, text="Preço por Hora (€)", font=("Arial", 9), bg="white", anchor="w").pack(fill="x")
+        price_entry = tk.Entry(frame, font=("Arial", 10), relief="solid", bd=1)
+        price_entry.pack(fill="x", ipady=6, pady=(2, 10))
+    
         # Categoria
-        tk. Label(frame, text="Categoria:").pack(anchor="w")
+        tk. Label(frame, text="Categoria", font=("Arial", 9), bg="white", anchor="w").pack(fill="x")
         categories = Category.get_all()
         cat_names = [c.name for c in categories]
         cat_var = tk.StringVar()
-        cat_combo = ttk.Combobox(frame, textvariable=cat_var, values=cat_names, state="readonly", width=32)
-        cat_combo.pack(pady=2)
+        cat_combo = ttk.Combobox(frame, textvariable=cat_var, values=cat_names, state="readonly", font=("Arial", 10))
+        cat_combo.pack(fill="x", pady=(2, 10))
         if cat_names:
             cat_combo.set(cat_names[0])
-        
+    
         def create():
-            name = name_entry. get().strip()
+            name = name_entry.get().strip()
             brand = brand_entry.get().strip()
-            
+    
             try:
-                price = float(price_entry.get())
+                price = float(price_entry.get().replace(",", "."))
             except ValueError:
-                messagebox. showerror("Erro", "Preço inválido!")
+                messagebox.showerror("Erro", "Preço inválido!")
                 return
-            
+    
             if not name or not brand:
-                messagebox. showwarning("Aviso", "Preencha todos os campos!")
+                messagebox.showwarning("Aviso", "Preencha todos os campos!")
                 return
-            
-            # Encontrar categoria
+    
+            # Validar categoria
+            if not cat_var.get():
+                messagebox.showwarning("Aviso", "Selecione uma categoria!")
+                return
+    
+            # Verificar se existem categorias
+            if not categories:
+                messagebox.showerror("Erro", "Crie primeiro uma categoria!")
+                return
+    
             category_id = None
             for cat in categories:
                 if cat.name == cat_var.get():
                     category_id = cat.id
                     break
-            
+    
+            if not category_id:
+                messagebox.showwarning("Aviso", "Selecione uma categoria válida!")
+                return
+    
             SportsItem.create(name, brand, price, category_id)
             messagebox.showinfo("Sucesso", "Artigo criado!")
             dialog.destroy()
             self.load_items()
-        
-        tk.Button(frame, text="Criar", command=create, width=20).pack(pady=20)
+        # Botão
+        btn = tk.Button(frame, text="Criar", command=create, font=("Arial", 10), 
+                        bg="#333", fg="white", relief="flat", pady=8, cursor="hand2")
+        btn.pack(fill="x", pady=(15, 0))
     
     def toggle_availability(self):
         from models import SportsItem
@@ -223,42 +245,52 @@ class AdminView:
     
     def new_category(self):
         from models import Category
-        
-        dialog = tk. Toplevel(self.master)
+    
+        dialog = tk.Toplevel(self.master)
         dialog.title("Nova Categoria")
-        dialog.geometry("400x200")
+        dialog.geometry("400x400")
         dialog.resizable(False, False)
         dialog.grab_set()
-        
-        frame = tk.Frame(dialog, padx=20, pady=20)
+        dialog.configure(bg="white")
+    
+        # Centralizar
+        dialog.update_idletasks()
+        x = (dialog.winfo_screenwidth() - 400) // 2
+        y = (dialog.winfo_screenheight() - 250) // 2
+        dialog.geometry(f"+{x}+{y}")
+    
+        frame = tk. Frame(dialog, bg="white", padx=30, pady=20)
         frame.pack(fill="both", expand=True)
-        
-        tk.Label(frame, text="Criar Nova Categoria", font=("Arial", 12, "bold")).pack(pady=10)
-        
+    
+        tk.Label(frame, text="Criar Nova Categoria", font=("Arial", 14, "bold"), bg="white").pack(pady=(0, 20))
+    
         # Nome
-        tk. Label(frame, text="Nome: ").pack(anchor="w")
-        name_entry = tk.Entry(frame, width=35)
-        name_entry.pack(pady=2)
-        
+        tk.Label(frame, text="Nome", font=("Arial", 9), bg="white", anchor="w").pack(fill="x")
+        name_entry = tk.Entry(frame, font=("Arial", 10), relief="solid", bd=1)
+        name_entry.pack(fill="x", ipady=6, pady=(2, 10))
+    
         # Descrição
-        tk.Label(frame, text="Descrição:").pack(anchor="w")
-        desc_entry = tk. Entry(frame, width=35)
-        desc_entry.pack(pady=2)
-        
+        tk.Label(frame, text="Descrição", font=("Arial", 9), bg="white", anchor="w").pack(fill="x")
+        desc_entry = tk.Entry(frame, font=("Arial", 10), relief="solid", bd=1)
+        desc_entry.pack(fill="x", ipady=6, pady=(2, 10))
+    
         def create():
             name = name_entry.get().strip()
-            desc = desc_entry.get().strip()
-            
+            desc = desc_entry. get().strip()
+        
             if not name: 
                 messagebox.showwarning("Aviso", "Introduza o nome!")
                 return
-            
+        
             Category.create(name, desc)
-            messagebox.showinfo("Sucesso", "Categoria criada!")
+            messagebox. showinfo("Sucesso", "Categoria criada!")
             dialog.destroy()
             self.load_categories()
-        
-        tk.Button(frame, text="Criar", command=create, width=20).pack(pady=20)
+    
+        # Botão
+        btn = tk.Button(frame, text="Criar", command=create, font=("Arial", 10),
+                        bg="#333", fg="white", relief="flat", pady=8, cursor="hand2")
+        btn.pack(fill="x", pady=(15, 0))
     
     def remove_category(self):
         from models import Category
@@ -296,7 +328,7 @@ class AdminView:
         tk.Label(filter_frame, text="Filtrar por estado:").pack(side="left")
         self.state_var = tk.StringVar(value="Todos")
         state_combo = ttk.Combobox(filter_frame, textvariable=self.state_var,
-                                   values=["Todos", "Pending", "Confirmed", "Cancelled", "Completed"],
+                                   values=["Todos", "Confirmed", "Cancelled", "Completed"],
                                    state="readonly", width=15)
         state_combo.pack(side="left", padx=5)
         state_combo.bind("<<ComboboxSelected>>", lambda e: self.load_reservations())
@@ -363,7 +395,7 @@ class AdminView:
         res_id = item_data["values"][0]
         state = item_data["values"][6]
         
-        if state not in ["Pending", "Confirmed"]:
+        if state not in ["Confirmed"]:
             messagebox.showerror("Erro", "Esta reserva não pode ser cancelada!")
             return
         
@@ -375,6 +407,48 @@ class AdminView:
                 self. load_reservations()
                 self.load_items()
     
+    def create_reports_tab(self):
+        frame = ttk.Frame(self.notebook, padding=10)
+        self.notebook.add(frame, text="📊 Relatórios")
+    
+        # Estatísticas gerais
+        stats_frame = ttk.LabelFrame(frame, text="Estatísticas Gerais", padding=10)
+        stats_frame.pack(fill="x", pady=10)
+    
+        self.stats_labels = {}
+    
+        stats = [
+            ("Total Utilizadores:", "users"),
+            ("Total Artigos:", "items"),
+            ("Total Categorias:", "categories"),
+            ("Total Reservas:", "reservations"),
+            ("Reservas Confirmadas:", "confirmed"),
+            ("Receita Total:", "revenue")
+        ]
+    
+        for i, (text, key) in enumerate(stats):
+            row = i // 2
+            col = (i % 2) * 2
+            ttk.Label(stats_frame, text=text).grid(row=row, column=col, sticky="w", padx=5, pady=2)
+            self.stats_labels[key] = ttk.Label(stats_frame, text="0", font=("Arial", 10, "bold"))
+            self.stats_labels[key].grid(row=row, column=col+1, sticky="w", padx=5, pady=2)
+    
+        ttk.Button(frame, text="🔄 Atualizar Estatísticas", command=self.update_stats).pack(pady=10)
+    
+        self.update_stats()
+
+    def update_stats(self):
+        self.stats_labels["users"].config(text=str(len(self.system.utilizadores)))
+        self.stats_labels["items"].config(text=str(len(self.system.artigos)))
+        self.stats_labels["categories"].config(text=str(len(self.system.categorias)))
+        self.stats_labels["reservations"].config(text=str(len(self.system.reservas)))
+    
+        confirmed = len([r for r in self.system.reservas if r.estado == "Confirmada"])
+        revenue = sum(r.valor_total for r in self.system.reservas if r.estado in ["Confirmada", "Concluída"])
+    
+        self.stats_labels["confirmed"].config(text=str(confirmed))
+        self.stats_labels["revenue"].config(text=f"€{revenue:.2f}")
+
     # ==================== LOGOUT ====================
     def logout(self):
         self.frame. destroy()

@@ -1,0 +1,306 @@
+[
+    {
+        "id": 1,
+        "name": "Bola de Futebol Oficial",
+        "brand": "Nike",
+        "price_per_hour": 2.5,
+        "available": false,
+        "category_id": 1
+    },
+    {
+        "id": 2,
+        "name": "Chuteiras Predator",
+        "brand": "Adidas",
+        "price_per_hour": 5.0,
+        "available": false,
+        "category_id": 1
+    },
+    {
+        "id": 3,
+        "name": "Luvas de Guarda-Redes",
+        "brand": "Uhlsport",
+        "price_per_hour": 3.5,
+        "available": false,
+        "category_id": 1
+    },
+    {
+        "id": 4,
+        "name": "Caneleiras Pro",
+        "brand": "Nike",
+        "price_per_hour": 2.0,
+        "available": false,
+        "category_id": 1
+    },
+    {
+        "id": 5,
+        "name": "Bola de Basquetebol",
+        "brand": "Spalding",
+        "price_per_hour": 3.0,
+        "available": true,
+        "category_id": 2
+    },
+    {
+        "id": 6,
+        "name": "Sapatilhas de Basquetebol",
+        "brand": "Jordan",
+        "price_per_hour": 6.0,
+        "available": true,
+        "category_id": 2
+    },
+    {
+        "id": 7,
+        "name": "Tabela de Basquetebol Portátil",
+        "brand": "Spalding",
+        "price_per_hour": 10.0,
+        "available": true,
+        "category_id": 2
+    },
+    {
+        "id": 8,
+        "name": "Raquete de Ténis Pro Staff",
+        "brand": "Wilson",
+        "price_per_hour": 5.5,
+        "available": true,
+        "category_id": 3
+    },
+    {
+        "id": 9,
+        "name": "Raquete de Ténis Pure Aero",
+        "brand": "Babolat",
+        "price_per_hour": 5.5,
+        "available": true,
+        "category_id": 3
+    },
+    {
+        "id": 10,
+        "name": "Pack 3 Bolas de Ténis",
+        "brand": "Dunlop",
+        "price_per_hour": 1.5,
+        "available": true,
+        "category_id": 3
+    },
+    {
+        "id": 11,
+        "name": "Raquete de Padel Metalbone",
+        "brand": "Bullpadel",
+        "price_per_hour": 6.0,
+        "category_id": 4,
+        "available": true
+    },
+    {
+        "id": 12,
+        "name": "Raquete de Padel Bela",
+        "brand": "Head",
+        "price_per_hour": 6.5,
+        "category_id": 4,
+        "available": true
+    },
+    {
+        "id": 13,
+        "name": "Pack 3 Bolas de Padel",
+        "brand": "Head",
+        "price_per_hour": 1.5,
+        "category_id": 4,
+        "available": true
+    },
+    {
+        "id": 14,
+        "name": "Óculos de Natação",
+        "brand": "Speedo",
+        "price_per_hour": 1.5,
+        "available": true,
+        "category_id": 5
+    },
+    {
+        "id": 15,
+        "name": "Touca de Silicone",
+        "brand": "Arena",
+        "price_per_hour": 1.0,
+        "available": true,
+        "category_id": 5
+    },
+    {
+        "id": 16,
+        "name": "Prancha de Natação",
+        "brand": "Speedo",
+        "price_per_hour": 2.0,
+        "available": true,
+        "category_id": 5
+    },
+    {
+        "id": 17,
+        "name": "Barbatanas de Treino",
+        "brand": "Arena",
+        "price_per_hour": 2.5,
+        "available": true,
+        "category_id": 5
+    },
+    {
+        "id": 18,
+        "name": "Bicicleta de Estrada",
+        "brand": "Trek",
+        "price_per_hour": 12.0,
+        "available": true,
+        "category_id": 6
+    },
+    {
+        "id": 19,
+        "name": "Bicicleta de Montanha",
+        "brand": "Specialized",
+        "price_per_hour": 10.0,
+        "category_id": 6,
+        "available": true
+    },
+    {
+        "id": 20,
+        "name": "Capacete de Ciclismo",
+        "brand": "Giro",
+        "price_per_hour": 3.0,
+        "category_id": 6,
+        "available": true
+    },
+    {
+        "id": 21,
+        "name": "Halteres 5kg (par)",
+        "brand": "Domyos",
+        "price_per_hour": 2.0,
+        "category_id": 7,
+        "available": true
+    },
+    {
+        "id": 22,
+        "name": "Halteres 10kg (par)",
+        "brand": "Domyos",
+        "price_per_hour": 3.0,
+        "category_id": 7,
+        "available": true
+    },
+    {
+        "id": 23,
+        "name": "Tapete de Yoga",
+        "brand": "Domyos",
+        "price_per_hour": 1.5,
+        "category_id": 7,
+        "available": true
+    },
+    {
+        "id": 24,
+        "name": "Corda de Saltar",
+        "brand": "Nike",
+        "price_per_hour": 1.0,
+        "category_id": 7,
+        "available": true
+    },
+    {
+        "id": 25,
+        "name": "Kettlebell 8kg",
+        "brand": "Domyos",
+        "price_per_hour": 2.5,
+        "category_id": 7,
+        "available": true
+    },
+    {
+        "id": 26,
+        "name": "Skis Alpinos",
+        "brand": "Rossignol",
+        "price_per_hour": 15.0,
+        "category_id": 8,
+        "available": true
+    },
+    {
+        "id": 27,
+        "name": "Snowboard",
+        "brand": "Burton",
+        "price_per_hour": 14.0,
+        "category_id": 8,
+        "available": true
+    },
+    {
+        "id": 28,
+        "name": "Botas de Ski",
+        "brand": "Salomon",
+        "price_per_hour": 6.0,
+        "category_id": 8,
+        "available": true
+    },
+    {
+        "id": 29,
+        "name": "Capacete de Ski",
+        "brand": "Oakley",
+        "price_per_hour": 4.0,
+        "category_id": 8,
+        "available": true
+    },
+    {
+        "id": 30,
+        "name": "Sapatilhas de Corrida",
+        "brand": "Asics",
+        "price_per_hour": 4.0,
+        "available": true,
+        "category_id": 9
+    },
+    {
+        "id": 31,
+        "name": "Sapatilhas de Corrida",
+        "brand": "Nike",
+        "price_per_hour": 4.5,
+        "available": true,
+        "category_id": 9
+    },
+    {
+        "id": 32,
+        "name": "Cronómetro Digital",
+        "brand": "Casio",
+        "price_per_hour": 1.5,
+        "available": true,
+        "category_id": 9
+    },
+    {
+        "id": 33,
+        "name": "Prancha de Surf",
+        "brand": "Firewire",
+        "price_per_hour": 12.0,
+        "available": true,
+        "category_id": 10
+    },
+    {
+        "id": 34,
+        "name": "Bodyboard",
+        "brand": "Morey",
+        "price_per_hour": 5.0,
+        "available": true,
+        "category_id": 10
+    },
+    {
+        "id": 35,
+        "name": "Fato de Neoprene 3/2mm",
+        "brand": "O'Neill",
+        "price_per_hour": 6.0,
+        "available": true,
+        "category_id": 10
+    },
+    {
+        "id": 36,
+        "name": "Kayak Individual",
+        "brand": "Perception",
+        "price_per_hour": 15.0,
+        "available": true,
+        "category_id": 10
+    },
+    {
+        "id": 37,
+        "name": "Stand Up Paddle (SUP)",
+        "brand": "Red Paddle",
+        "price_per_hour": 10.0,
+        "available": true,
+        "category_id": 10
+    },
+    {
+        "id": 38,
+        "name": "Colete Salva-Vidas",
+        "brand": "Helly Hansen",
+        "price_per_hour": 3.0,
+        "available": true,
+        "category_id": 10
+    }
+]

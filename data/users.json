@@ -1,0 +1,28 @@
+[
+    {
+        "id": 1,
+        "name": "Administrador",
+        "email": "admin@sistema.com",
+        "password": "Admin123",
+        "type": "admin",
+        "access_level": 1
+    },
+    {
+        "id": 2,
+        "name": "João Silva",
+        "email": "joao@email.com",
+        "password": "Cliente123",
+        "type": "client",
+        "address": "Rua das Flores, 123, Lisboa",
+        "phone": "912345678"
+    },
+    {
+        "id": 3,
+        "name": "Maria Santos",
+        "email": "maria@email.com",
+        "password": "Cliente123",
+        "type": "client",
+        "address": "Av. da Liberdade, 456, Porto",
+        "phone": "936987412"
+    }
+]

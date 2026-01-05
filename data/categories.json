@@ -1,0 +1,52 @@
+[
+    {
+        "id": 1,
+        "name": "Futebol",
+        "description": "Equipamentos e acessórios para futebol"
+    },
+    {
+        "id": 2,
+        "name": "Basquetebol",
+        "description": "Equipamentos e acessórios para basquetebol"
+    },
+    {
+        "id": 3,
+        "name": "Ténis",
+        "description": "Raquetes, bolas e acessórios para ténis"
+    },
+    {
+        "id": 4,
+        "name": "Padel",
+        "description": "Raquetes e acessórios para padel"
+    },
+    {
+        "id": 5,
+        "name": "Natação",
+        "description": "Óculos, toucas e acessórios para natação"
+    },
+    {
+        "id": 6,
+        "name": "Ciclismo",
+        "description":  "Bicicletas, capacetes e acessórios"
+    },
+    {
+        "id": 7,
+        "name": "Fitness",
+        "description": "Equipamentos de ginásio e musculação"
+    },
+    {
+        "id": 8,
+        "name": "Desportos de Inverno",
+        "description": "Ski, snowboard e acessórios"
+    },
+    {
+        "id": 9,
+        "name": "Atletismo",
+        "description": "Equipamentos para corrida e atletismo"
+    },
+    {
+        "id": 10,
+        "name": "Desportos Aquáticos",
+        "description": "Surf, bodyboard, kayak e acessórios"
+    }
+]
