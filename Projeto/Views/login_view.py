@@ -43,7 +43,7 @@ class LoginView:
             self.frame.destroy()
             
             if user.get_type() == "admin":
-                from . admin_view import AdminView
+                from .admin_view import AdminView
                 AdminView(self.master, user)
             else:
                 from .client_view import ClientView
